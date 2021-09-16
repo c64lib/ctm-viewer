@@ -1,7 +1,7 @@
 import com.github.c64lib.retroassembler.domain.AssemblerType
 
 plugins {
-    id("com.github.c64lib.retro-assembler") version "1.4.3"
+    id("com.github.c64lib.retro-assembler") version "1.4.4"
 }
 
 repositories {
@@ -10,7 +10,7 @@ repositories {
 
 retroProject {
     dialect = AssemblerType.KickAssembler
-    dialectVersion = "5.20"
+    dialectVersion = "5.21"
     libDirs = arrayOf(".ra/deps/c64lib", "build/charpad")
     srcDirs = arrayOf("src")
     excludes = arrayOf("**/_*.asm")
@@ -66,4 +66,71 @@ preprocess {
         }
       }
     }
+    charpad {
+      getInput().set(file("src/ctm/Arkanoid.ctm"))
+      getUseBuildDir().set(true)
+      outputs {
+        meta {
+          dialect = AssemblerType.KickAssembler
+          namespace = "c64lib"
+          output = file("arkanoid-meta.asm")
+          includeVersion = true
+          includeMode = true
+        }
+        charset {
+          output = file("arkanoid-charset.bin")
+        }
+        charsetColours {
+          output = file("arkanoid-colours.bin")
+        }
+        charsetScreenColours {
+          output = file("arkanoid-screen-colours.bin")
+        }
+      }
+    }
+    charpad {
+      getInput().set(file("src/ctm/Last Ninja, The.ctm"))
+      getUseBuildDir().set(true)
+      outputs {
+        meta {
+          dialect = AssemblerType.KickAssembler
+          namespace = "c64lib"
+          output = file("ln-meta.asm")
+          includeVersion = true
+          includeMode = true
+        }
+        charset {
+          output = file("ln-charset.bin")
+        }
+        charsetColours {
+          output = file("ln-colours.bin")
+        }
+        charsetScreenColours {
+          output = file("ln-screen-colours.bin")
+        }
+      }
+    }
+    charpad {
+      getInput().set(file("src/ctm/Ghosts n Goblins.ctm"))
+      getUseBuildDir().set(true)
+      outputs {
+        meta {
+          dialect = AssemblerType.KickAssembler
+          namespace = "c64lib"
+          output = file("gng-meta.asm")
+          includeVersion = true
+          includeMode = true
+        }
+        charset {
+          output = file("gng-charset.bin")
+        }
+        charsetColours {
+          output = file("gng-colours.bin")
+        }
+        charsetScreenColours {
+          output = file("gng-screen-colours.bin")
+        }
+      }
+    }
+
 }
